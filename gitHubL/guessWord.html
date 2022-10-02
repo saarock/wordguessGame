@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Bungee Spice', cursive;
+        }
+        header {
+            background-color:yellow;
+            padding: 12px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        h1{
+        display: grid;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        section {
+            height: 85vh;
+            background-color: slateblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        .game-a{
+width: 50%;
+height: 400px;
+/* height:102px; */
+background-color:skyblue;
+display: flex;
+justify-content: center;
+text-align: center;
+flex-direction: column;
+padding: 20px 0;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+border-radius: 50%;
+        }
+   input [type="text"]{
+background-color: skyblue;
+border-radius: 23%;
+   }
+        button {
+            background-color:skyblue;
+            border: none;
+            cursor: pointer;
+        }
+        .hidden {
+            display:none;
+         
+        }
+    </style>
+</head>
+<body>
+ <header>
+        <h1>
+            Guess the words.
+        </h1>
+</header>
+<section>
+    <div class="game-a">
+            <h3 class="msg"></h3>
+    <input type="text" name="input" id="input" class="hidden">
+    <button id="btn">Check</button>
+    </div>
+</section>
+    <script>
+
+let myShower = ['baby', 'rohan', 'pratik', 'Aayush','saarock', 'pragyan','dhurba', 'javascript','kATHMANDU','ghorahi','nepal','apple','mango'];
+
+
+        let showMyvalue = () => {
+            let randomN = Math.floor(Math.random()*myShower.length);
+            let randomNumber = myShower[randomN];
+            // console.log(randomNumber);
+// let arr = randomNumber.split(' ');
+return randomNumber;
+        }
+        let zikZak = (arr) => {
+ for(let i=arr.length -1; i>=0 ; i--)
+ {
+    let elem = arr[i];
+    // console.log(elem);
+    let j = Math.floor(Math.random()*i+1);
+     arr[i] = arr[j];
+     arr[j] = elem; 
+ }
+ return arr;
+        }
+        let msg = document.querySelector('.msg');
+        let guess = document.querySelector('#input');
+        let btn = document.querySelector('#btn');
+        let play = false;
+        let imp = "";
+        let anotherFunction = "";
+        btn.addEventListener('click', function() {
+            if(!play){
+                play = true;
+                this.innerText = 'guess';
+                guess.classList.toggle('hidden');
+            imp = showMyvalue()
+ anotherFunction = zikZak(imp.split(''));
+// console.log(anotherFunction);
+msg.innerHTML = anotherFunction;
+
+            }
+             else {
+           let a = guess.value ;
+            if(a === imp ){
+console.log("you are first");
+msg.innerHTML = `${imp} is correct word you are mastermind. play again if you are intrested.`
+play = false;
+this.innerText = "Start again";
+
+guess.classList.toggle('hidden');
+guess.value = ""
+
+            } if(a != imp){
+msg.innerHTML = anotherFunction;
+
+                msg.innerHTML = `Sorry dude ${a} isn't correct word correct wrod is ${imp}. Clear you written input word and play again.`
+            this.innerText = "play again"
+            guess.value = ""
+
+            
+            }
+
+         if(a == "") {
+                msg.innerHTML = "due you haven playing the. Please play to check how smart are you.";
+                // this.innerText = "play again";
+                // play = true;
+// msg.innerHTML = anotherFunction;
+msg.innerHTML = anotherFunction;
+
+guess.classList.toggle('hidden');
+
+                
+
+            }
+        } 
+    });
+             
+    </script>
+</body>
+</html>
