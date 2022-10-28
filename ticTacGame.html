@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTOkGame</title>
+  <style>
+    body {
+      background-color: black;
+      max-height: 50%;
+
+    }
+
+    .container {
+      /* display: flex; */
+      text-align: center;
+      position: relative;
+      left: 6rem;
+      align-items: center;
+      margin: 12rem;
+    }
+
+    .box {
+      background-color: royalblue;
+      height: 38rem;
+      width: 39rem;
+      display: grid;
+      text-align: center;
+      align-items: center;
+      grid-template-columns: auto auto auto;
+      /* grid-template-rows: minmax(120px, auto); */
+      padding: 0rem;
+      border-radius: 2rem;
+
+      /* margin: 7rem; */
+    }
+
+    .btn {
+      height: 8rem;
+      text-align: center;
+      font-size: 5rem;
+      position: relative;
+      left: 3rem;
+      /* margin: 1rem; */
+      width: 8rem;
+      background-color: bisque;
+      border-radius: 2rem;
+      color: red;
+      font-weight: bold;
+      border: 1px solid rebeccapurple;
+
+
+    }
+
+    .baby {
+      background: rebeccapurple;
+      height: 12rem;
+      width: 1rem;
+    }
+
+    .cross0 {
+      background-color: red;
+      width: 35rem;
+      position: relative;
+      top: 9rem;
+      height: 1rem;
+      z-index: 1;
+      display: none;
+
+    }
+
+    .cross1 {
+      background-color: red;
+      width: 39rem;
+      position: relative;
+      top: 21rem;
+      height: 1rem;
+      z-index: 1;
+      display: none;
+
+    }
+
+
+    .cross2 {
+      background-color: red;
+      width: 39rem;
+      position: relative;
+      top: 33rem;
+      height: 1rem;
+      z-index: 1;
+      display: none;
+
+    }
+
+
+    .cross3 {
+      background-color: red;
+      width: 1rem;
+      position: absolute;
+      top: 3.6rem;
+      height: 39rem;
+      left: 7rem;
+      display: none;
+      z-index: 1;
+    }
+
+
+    .cross4 {
+      background-color: red;
+      width: 1rem;
+      position: absolute;
+      top: 3.6rem;
+      height: 39rem;
+      left: 20rem;
+      z-index: 1;
+      display: none;
+    }
+
+
+    .cross5 {
+      background-color: red;
+      width: 1rem;
+      position: absolute;
+      top: 3.6rem;
+      height: 39rem;
+      left: 33rem;
+      z-index: 1;
+      display: none;
+
+    }
+
+    .show {
+      background-color: red;
+      height: 6rem;
+      width: 16rem;
+      top: 1rem;
+      position: absolute;
+      border-radius: 2rem;
+      left: 41rem;
+      /* display: none; */
+    }
+
+    .result {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .delete {
+      color: red;
+      position: relative;
+      top: -20rem;
+      left: 42rem;
+      height: 3rem;
+      font-size: 2rem;
+      font-weight: bold;
+      background-color: antiquewhite;
+      border-radius: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cross0"></div>
+  <div class="cross1"></div>
+  <div class="cross2"></div>
+  <div class="cross3"></div>
+  <div class="cross4"></div>
+  <div class="cross5"></div>
+  <div class="cross6"></div>
+  <div class="cross7"></div>
+
+
+
+  <div class="container-fluid  main-box">
+    <div class="box">
+
+
+
+
+      <button alphabate='button' class="btn btn1 "></button>
+      <button alphabate='button' class="btn btn2"></button>
+      <button alphabate='button' class="btn btn3"></button>
+      <button alphabate='button' class="btn btn4"></button>
+      <button alphabate='button' class="btn btn5"></button>
+      <button alphabate='button' class="btn btn6"></button>
+      <button alphabate='button' class="btn btn7"></button>
+      <button alphabate='button' class="btn btn8"></button>
+      <button alphabate='button' class="btn btn9"></button>
+
+
+    </div>
+  </div>
+
+  <div id="show1">
+    <h1 class="result">fantastics</h1>
+  </div>
+  <button onclick="clearAllvalue()" class="delete">delete the value and play again</button>
+  <script>
+
+
+   
+    let array1 = [ 'X', 'Y' ]
+    let button1 = document.getElementsByClassName('btn')
+    let result = document.querySelector('.result')
+    let cross0 = document.querySelector('.cross0')
+    let cross1 = document.querySelector('.cross1')
+    let cross2 = document.querySelector('.cross2')
+    let cross3 = document.querySelector('.cross3')
+    let cross4 = document.querySelector('.cross4')
+    let cross5 = document.querySelector('.cross5')
+    let h1 = document.getElementById('show1')
+    let gamePlay = false
+    let gameWin = 0
+    // console.log(button1[ 0 ])
+
+    let array = [
+      [ "X", "Y" ]
+    ]
+
+    const timeOutFunction = () => {
+    
+      h1.classList.remove('show')
+    }
+
+
+    function checkWin() {
+      array.forEach((e) => {
+
+        console.log(e[ 0 ])
+        if (
+
+          button1[ 0 ].innerHTML == e[ 0 ] && button1[ 1 ].innerHTML == e[ 0 ] && button1[ 2 ].innerHTML == e[ 0 ] ||
+          button1[ 0 ].innerHTML == e[ 1 ] && button1[ 1 ].innerHTML == e[ 1 ] && button1[ 2 ].innerHTML == e[ 1 ]
+        ) {
+          cross0.style.display = 'block'
+
+          h1.className = "show"
+
+        }
+
+
+        if (
+          button1[ 3 ].innerHTML == e[ 0 ] && button1[ 4 ].innerHTML == e[ 0 ] && button1[ 5 ].innerHTML == e[ 0 ] ||
+          button1[ 3 ].innerHTML == e[ 1 ] && button1[ 4 ].innerHTML == e[ 1 ] && button1[ 5 ].innerHTML == e[ 1 ]
+        ) {
+          cross1.style.display = 'block'
+          result.innerHTML = 'Wow'
+          h1.classList.add('show')
+        }
+
+        if (
+          button1[ 6 ].innerHTML == e[ 0 ] && button1[ 7 ].innerHTML == e[ 0 ] && button1[ 8 ].innerHTML == e[ 0 ] ||
+          button1[ 6 ].innerHTML == e[ 1 ] && button1[ 7 ].innerHTML == e[ 1 ] && button1[ 8 ].innerHTML == e[ 1 ]
+        ) {
+          cross2.style.display = 'block'
+          result.innerHTML = 'Wow'
+          h1.classList.add('show')
+
+        }
+        if (
+
+          button1[ 0 ].innerHTML == e[ 0 ] && button1[ 3 ].innerHTML == e[ 0 ] && button1[ 6 ].innerHTML == e[ 0 ] ||
+          button1[ 0 ].innerHTML == e[ 1 ] && button1[ 3 ].innerHTML == e[ 1 ] && button1[ 6 ].innerHTML == e[ 1 ]
+        ) {
+          cross3.style.display = 'block'
+          result.innerHTML = 'Wow'
+          h1.classList.add('show')
+
+        }
+        if (
+          button1[ 1 ].innerHTML == e[ 0 ] && button1[ 4 ].innerHTML == e[ 0 ] && button1[ 7 ].innerHTML == e[ 0 ] ||
+          button1[ 1 ].innerHTML == e[ 1 ] && button1[ 4 ].innerHTML == e[ 1 ] && button1[ 7 ].innerHTML == e[ 1 ]
+        ) {
+          cross4.style.display = 'block'
+          result.innerHTML = 'Wow'
+          h1.classList.add('show')
+
+        }
+        if (
+          button1[ 2 ].innerHTML == e[ 0 ] && button1[ 5 ].innerHTML == e[ 0 ] && button1[ 8 ].innerHTML == e[ 0 ] ||
+          button1[ 2 ].innerHTML == e[ 1 ] && button1[ 5 ].innerHTML == e[ 1 ] && button1[ 8 ].innerHTML == e[ 1 ]
+        ) {
+          cross5.style.display = 'block'
+          result.innerHTML = 'Amazing'
+          h1.classList.add('show')
+
+        }
+        if (
+          button1[ 0 ].innerHTML == e[ 0 ] && button1[ 4 ].innerHTML == e[ 0 ] && button1[ 8 ].innerHTML == e[ 0 ] ||
+          button1[ 0 ].innerHTML == e[ 1 ] && button1[ 4 ].innerHTML == e[ 1 ] && button1[ 8 ].innerHTML == e[ 1 ] ||
+
+          button1[ 2 ].innerHTML == e[ 0 ] && button1[ 4 ].innerHTML == e[ 0 ] && button1[ 6 ].innerHTML == e[ 0 ] ||
+          button1[ 2 ].innerHTML == e[ 1 ] && button1[ 4 ].innerHTML == e[ 1 ] && button1[ 6 ].innerHTML == e[ 1 ]
+
+        ) {
+
+
+
+
+          result.innerHTML = 'you win'
+          h1.classList.add('show')
+         
+
+        }
+
+
+      })
+
+    }
+
+
+
+
+    let showValue = () => {
+      let random = Math.floor(Math.random() * array1.length)
+      let here = array1[ random ]
+      return here
+    }
+
+
+    //change the html collection into nodelist to use array forEach method
+    [ ...button1 ].forEach((button) => {
+      gamePlay = true;
+      button.addEventListener('click', showValues)
+      function showValues(e) {
+        if (true) {
+          e.target.disabled = true
+        }
+        e.target.innerText = showValue()
+        checkWin()
+        
+
+      }
+    })
+
+
+    function clearAllvalue() {
+      document.location.reload(true);
+    }
+  </script>
+</body>
+
+</html>
